@@ -1,0 +1,41 @@
+@import "breakpoints";
+
+@mixin adaptive-xs {
+  @media screen and (max-width: $xs-max) {
+    @content;
+  }
+}
+
+@mixin adaptive-sm {
+  @media screen and (max-width: $sm-max) {
+    @content;
+  }
+}
+
+@mixin adaptive-md {
+  @media screen and (max-width: $md-max) {
+    @content;
+  }
+}
+
+@mixin adaptive-lg {
+  @media screen and (max-width: $lg-max) {
+    @content;
+  }
+}
+
+@mixin adapt($property, $lg, $md, $sm, $xs) {
+  #{$property}: $lg;
+
+  @include adaptive-md {
+    #{$property}: $md;
+  }
+
+  @include adaptive-sm {
+    #{$property}: $sm;
+  }
+
+  @include adaptive-xs {
+    #{$property}: $xs;
+  }
+}

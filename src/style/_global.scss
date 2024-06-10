@@ -1,0 +1,26 @@
+@import "/src/style/adaptive";
+
+.container {
+  width: 1520px;
+  height: 100%;
+
+  margin: 0 auto;
+
+  @include adaptive-md {
+    width: 1240px;
+  }
+
+  @include adaptive-sm {
+    width: 100%;
+
+    padding: 0 30px;
+  }
+
+  @include adaptive-xs {
+    padding: 0 16px;
+  }
+}
+
+.number {
+  font-family: Rubik, sans-serif;
+}
