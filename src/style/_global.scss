@@ -1,11 +1,14 @@
 @import "/src/style/adaptive";
 
+.content {
+  flex: 1 0 auto;
+}
+
 .container {
   max-width: 1570px;
   height: 100%;
 
   margin: 0 auto;
-  padding: 0 15px;
 
   @include adaptive-md {
     width: 100%;

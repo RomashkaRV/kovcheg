@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
@@ -10,14 +11,13 @@ import data from "const/data";
 import WorkTime from "const/workTime";
 import { navigationLinks } from "const/navigation";
 
-import LogoIcon from "/public/static/image/logo.png";
+import LogoIcon from "/public/static/images/logo.png";
 import WatchIcon from "/public/static/icons/watch.svg";
 import PhoneIcon from "/public/static/icons/phone.svg";
 import TelegramIcon from "/public/static/icons/telegram.svg";
 import WhatsappIcon from "/public/static/icons/whatsapp.svg";
 
 import style from "./index.module.scss";
-import Image from "next/image";
 
 
 export default function Header() {
@@ -35,11 +35,14 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={classNames(style.header, "container")}>
+    <header className={classNames(style.header)}>
       <div className={style.top}>
-        <div className={style.top__logo}>
+        <Link
+          className={style.top__logo}
+          href="/"
+        >
           <Image src={LogoIcon} alt="logo" />
-        </div>
+        </Link>
         <div className={style.top__nav}>
           {navigationLinks.map((item, index) => (
             <Link

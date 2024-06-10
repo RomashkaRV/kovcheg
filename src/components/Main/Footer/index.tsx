@@ -1,89 +1,86 @@
-import Link from "next/link";
+"use client";
+
 import React from "react";
+import Link from "next/link";
 
-import { Divider, Typography } from "@mui/material";
-
-import WorkTime from "components/workTime";
-
+import data from "const/data";
+import WorkTime from "const/workTime";
 import { navigationLinks } from "const/navigation";
 
-import TelegramIcon from "@mui/icons-material/Telegram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import classNames from "functions/classNames";
+
+
+import TelegramIcon from "/public/static/icons/telegram.svg";
+import IoTechLogo from "/public/static/images/ioTech.png";
+import WhatsappIcon from "/public/static/icons/whatsapp.svg";
 
 import style from "./index.module.scss";
+import Image from "next/image";
 
-export default class Footer extends React.Component<any, any> {
-
-  render() {
-    return (
-      <footer className={style.footer}>
-        <Divider className={style.footerBorder} />
-        <div className="container">
-          <div className={style.info}>
-            <div className={style.column}>
-              {navigationLinks.map((item, index) => (
-                <Typography
-                  className={style.menuItem}
-                  key={index}
-                  variant="body1"
-                >
-                  {item.href ? (
-                    <Link href={item.href} passHref>
-                      {item.name}
-                    </Link>
-                  ) : item.name}
-                </Typography>
-              ))}
-            </div>
-            <div className={style.column}>
-              <Typography className={style.description} variant="body1">
-                Время работы комплекса: <br />
-                <WorkTime/>
-              </Typography>
-              <Typography className={style.description} variant="body1">
-                 Номер телефона: <br />
-                <Link href="tel:+79685516286" passHref>
-                  +7(968)551-62-86
-                </Link>
-              </Typography>
-              <div className={style.list}>
-                <a href="https://t.me/+79685516286" target="_blank" rel="noreferrer">
-                  <TelegramIcon className={style.icon} />
-                </a>
-                <a href="https://wa.me/+79685516286" target="_blank" rel="noreferrer">
-                  <WhatsAppIcon className={style.icon} />
-                </a>
-              </div>
-              <div className={style.list}>
-                <Typography variant="subtitle2">
-                  Наро-Фоминск, 73-й км Киевского шоссе
-                </Typography>
-                <Link href="/contacts" passHref>
-                  <a>
-                    <Typography variant="h6" className={style.point}>
-                      Как добраться
-                    </Typography>
-                  </a>
-                </Link>
-              </div>
-            </div>
-            <div className={style.footerCopyright}>
-              <Typography style={{ textAlign: "center" }} variant="body1">© Не является публичной офертой</Typography>
-              <Link href="/" passHref>
-                <Typography style={{ textAlign: "center" }} variant="body1">
-                  Все права защищены
-                </Typography>
-              </Link>
-            </div>
-            <Link href="https://iotech.company/" passHref>
-              <div className={style.ioLogo}>
-                <img src="/static/ioTech_logo.png" alt=""/>
-              </div>
-            </Link>
-          </div>
+export default function Footer() {
+  return (
+    <footer className={style.footer}>
+      <div className={style.footer__line}>
+        <hr />
+      </div>
+      <div className={classNames(
+        style.column,
+        style.column__nav
+      )}>
+        {navigationLinks.map((item, index) => (
+          <Link
+            className={style.item}
+            key={index}
+            href={item.href}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </div>
+      <div className={classNames(
+        style.column,
+        style.column__info
+      )}>
+        <div className={style.column__block}>
+          <p>
+            Время работы комплекса: &nbsp;
+            <WorkTime />
+          </p>
         </div>
-      </footer>
-    );
-  }
-
+        <div className={style.column__block}>
+          <Link href={`tel:${data.phone}`} passHref>
+            Строй-отдел: &nbsp; {data.phone}
+          </Link>
+          <Link href={`https://t.me/${data.telegram}`} target="_blank" rel="noreferrer">
+            <TelegramIcon />
+          </Link>
+          <Link href={`https://wa.me/${data.whatsapp}`} target="_blank" rel="noreferrer">
+            <WhatsappIcon />
+          </Link>
+        </div>
+        <div className={style.column__block}>
+          <p>
+            {data.shortAddress}
+          </p>
+          <Link href="/contacts">
+            Как добраться
+          </Link>
+        </div>
+      </div>
+      <div className={classNames(
+        style.column,
+        style.column__copyright
+      )}>
+        <p>
+          © Не является публичной офертой <br /> Все права защищены
+        </p>
+      </div>
+      <div className={classNames(
+        style.logo,
+        style.column
+      )}>
+        <Image src={IoTechLogo} alt="" />
+      </div>
+    </footer>
+  );
 }
