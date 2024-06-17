@@ -33,6 +33,14 @@
   font-size: 40px;
   font-weight: 500;
   line-height: 49px;
+
+  @include adaptive-sm {
+    font-size: 30px;
+  }
+
+  @include adaptive-xs {
+    font-size: 24px;
+  }
 }
 
 @mixin b1 {

@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 import { ReactNode } from "react";
 import { Roboto } from "next/font/google";
 
-import Header from "../components/Main/Header";
-import Footer from "../components/Main/Footer";
+import Header from "../components/main/Header";
+import Footer from "../components/main/Footer";
 
 import "/src/style/index.scss";
 import classNames from "../functions/classNames";
